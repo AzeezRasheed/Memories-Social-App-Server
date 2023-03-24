@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 import UserModel from "../model/userModel.js";
 
 const protect = AsyncHandler(async (req, res, next) => {
-  const authHeader = req.headers["Authorization"];
+  const authHeader = req.headers.authorization;
 
   if (!authHeader || !authHeader.startsWith("Bearer")) {
     res.status(401);

@@ -215,7 +215,7 @@ export const GetUser = AsyncHandler(async (req, res) => {
 // Logged in Boolean, we use it to know if a user is logged in or not
 export const IsUserLoggedIn = AsyncHandler(async (req, res) => {
   // we check if there is a bearer token from the header
-  const authHeader = req.headers["Authorization"];
+  const authHeader = req.headers.authorization;
 
   // we check if there is a bearer token from the header or if it starts with Bearer, else we send a 401 status code
   if (!authHeader || !authHeader.startsWith("Bearer")) {
