@@ -215,11 +215,10 @@ export const GetUser = AsyncHandler(async (req, res) => {
 // Logged in Boolean, we use it to know if a user is logged in or not
 export const IsUserLoggedIn = AsyncHandler(async (req, res) => {
   // we check if there is a bearer token from the header
-  const authHeader = req.headers.authorization;
-
+  const authHeader = req.headers.authorization
   // we check if there is a bearer token from the header or if it starts with Bearer, else we send a 401 status code
   if (!authHeader || !authHeader.startsWith("Bearer")) {
-    res.status(200).json(false);
+   return res.status(200).json(false);
   }
 
   // we get the token from the header and split it
@@ -231,7 +230,7 @@ export const IsUserLoggedIn = AsyncHandler(async (req, res) => {
   // we check if the user exists in the database, because if it is verified, the jwt has the user id in it
   const user = await UserModel.findById(decodedToken.id);
   if (user) {
-    res.status(200).json(true);
+    return res.status(200).json(true);
   } else {
     res.status(200).json(false);
   }
